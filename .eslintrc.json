@@ -3,5 +3,23 @@
     "next/core-web-vitals",
     "@rocketseat/eslint-config/next"
   ],
-  "ignorePatterns": ["*.d.ts"]
+  "plugins": [
+    "simple-import-sort"
+  ],
+  "ignorePatterns": [
+    "*.d.ts"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "all",
+        "arrowParens": "avoid",
+        "endOfLine": "auto"
+      }
+    ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
+  }
 }
