@@ -1,12 +1,10 @@
-import { env } from '@env'
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test';
 
-test('It should be able to see the text hello world', async ({ page }) => {
-  await page.goto('/')
+test('It should be able to see the text dashboard', async ({ page }) => {
+  await page.goto('/dashboard');
 
-  const defaultText = page.getByText('Hello world!')
-  await expect(defaultText).toBeVisible()
-  await expect(defaultText).toHaveText('Hello world!')
-  await expect(defaultText).toContainText('Hello')
-  await expect(defaultText).toHaveText(/!/)
-})
+  const defaultText = page.getByText('Dashboard!');
+  await expect(defaultText).toBeVisible();
+  await expect(defaultText).toHaveText('Dashboard!');
+  await expect(defaultText).toContainText('Dashboard');
+});
