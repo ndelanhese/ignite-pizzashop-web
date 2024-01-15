@@ -14,8 +14,7 @@ jobs:
       with:
         node-version: 20.11
     - name: Install dependencies
-      run: curl -fsSL https://bun.sh/install | bash
-      run: bun install
+      run: curl -fsSL https://bun.sh/install | bash && bun install
     - name: Install Playwright Browsers
       run: bunx playwright install --with-deps
     - name: Run Playwright tests
