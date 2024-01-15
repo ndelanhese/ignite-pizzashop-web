@@ -22,6 +22,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@env": ["./src/env/index.ts"],
+      "@components/*": ["./src/components/*"],
+      "@lib/*": ["./src/lib/*"],
     }
   },
   "include": [
