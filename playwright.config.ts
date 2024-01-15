@@ -22,7 +22,7 @@ export default defineConfig({
     command: 'bun dev',
     url: baseURL,
     timeout: 120 * 1000,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true,
   },
 
   use: {
