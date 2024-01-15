@@ -1,9 +1,8 @@
-import { env } from '@env'
 import { defineConfig, devices } from '@playwright/test'
 import path from 'node:path'
 
 // Use process.env.PORT by default and fallback to port 3000
-const PORT = env.NEXT_PUBLIC_APP_PORT || 3000
+const PORT = process.env.NEXT_PUBLIC_APP_PORT || 3000
 
 // Set webServer.url and use.baseURL with the location of the WebServer respecting the correct set port
 const baseURL = `http://127.0.0.1:${PORT}`
