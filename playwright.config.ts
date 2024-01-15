@@ -1,17 +1,16 @@
-import { defineConfig, devices } from '@playwright/test'
-import path from 'node:path'
+import { defineConfig, devices } from '@playwright/test';
 
 // Use process.env.PORT by default and fallback to port 3000
-const PORT = process.env.NEXT_PUBLIC_APP_PORT || 3000
+const PORT = process.env.NEXT_PUBLIC_APP_PORT || 3000;
 
 // Set webServer.url and use.baseURL with the location of the WebServer respecting the correct set port
-const baseURL = `http://127.0.0.1:${PORT}`
+const baseURL = `http://127.0.0.1:${PORT}`;
 
 export default defineConfig({
   // Timeout per test
   timeout: 30 * 1000,
   // Test directory
-  testDir: path.join(__dirname, 'e2e'),
+  testDir: 'e2e',
   // If a test fails, retry it additional 2 times
   retries: 2,
   // Artifacts folder where screenshots, videos, and traces are stored.
@@ -72,4 +71,4 @@ export default defineConfig({
     //   use: devices["iPhone 12"],
     // },
   ],
-})
+});
