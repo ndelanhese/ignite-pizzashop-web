@@ -1,10 +1,5 @@
 import { Pizza } from 'lucide-react';
-import { Metadata } from 'next';
 import { ReactNode } from 'react';
-
-export const metadata: Metadata = {
-  title: 'Login',
-};
 
 const AuthLayout = ({ children }: { children: ReactNode }) => (
   <main className="grid min-h-screen grid-cols-1 sm:grid-cols-2">
@@ -17,7 +12,9 @@ const AuthLayout = ({ children }: { children: ReactNode }) => (
         Painel do parceiro &copy; pizza.shop - {new Date().getFullYear()}
       </footer>
     </div>
-    <div className="flex flex-col items-center justify-center">{children}</div>
+    <div className="relative flex flex-col items-center justify-center">
+      {children}
+    </div>
   </main>
 );
 
