@@ -16,6 +16,8 @@ jobs:
     - name: Install Playwright Browsers
       run:  bunx playwright install --with-deps
     - name: Run Playwright tests
+      env:
+        CI: true
       run:  bunx playwright test
     - uses: actions/upload-artifact@v3
       if: always()
