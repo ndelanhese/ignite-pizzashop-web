@@ -1,7 +1,6 @@
-import { Button } from '@components/ui/button';
-import { Input } from '@components/ui/input';
-import { Label } from '@components/ui/label';
 import { Metadata } from 'next';
+
+import { SignInForm } from './client/form';
 
 export const metadata: Metadata = {
   title: 'Login',
@@ -18,18 +17,7 @@ const SignInPage = () => (
           Acompanhe suas vendas pelo painel do parceiro
         </p>
       </div>
-      <form className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="email">Seu e-mail</Label>
-          <Input id="email" type="email" placeholder="name@example.com" />
-        </div>
-        <Button
-          type="submit"
-          className="text-md w-full font-semibold tracking-tighter"
-        >
-          Acessar painel
-        </Button>
-      </form>
+      <SignInForm />
     </div>
   </div>
 );
