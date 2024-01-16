@@ -8,13 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-
-    - name: Debug Environment Variables
-      run: |
-        echo "CI: $CI"
-        echo "NEXT_PUBLIC_APP_URL: $NEXT_PUBLIC_APP_URL"
-        echo "NEXT_PUBLIC_APP_PORT: $NEXT_PUBLIC_APP_PORT"
-
     - uses: oven-sh/setup-bun@v1
       with:
           bun-version: 1.0.22
