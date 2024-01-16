@@ -12,20 +12,21 @@
     "prettier": "prettier ./app --write",
     "prepare": "husky install",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "test:unit": "playwright test tests/unit/ --ui",
-    "test:unit:line": "playwright test tests/unit/",
-    "test:unit:debug": "playwright test tests/unit/ --debug",
+    "test": "playwright test src/ --ui",
+    "test:line": "playwright test src/",
+    "test:debug": "playwright test src/ --debug",
     "test:e2e": "playwright test tests/e2e/ --ui",
     "test:e2e:line": "playwright test tests/e2e/",
     "test:e2e:debug": "playwright test tests/e2e/ --debug",
     "test:report": "playwright show-report",
-    "test:all": "playwright test tests/ --ui",
-    "test:all:line": "playwright test tests/"
+    "test:all": "playwright test --ui",
+    "test:all:line": "playwright test"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "add": "^2.0.6",
     "class-variance-authority": "^0.7.0",
@@ -43,7 +44,6 @@
     "zod": "3.22.4"
   },
   "devDependencies": {
-    "husky": "^8.0.3",
     "@commitlint/cli": "^18.4.4",
     "@commitlint/config-conventional": "^18.4.4",
     "@playwright/test": "1.40.1",
@@ -54,11 +54,12 @@
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "8.56.0",
     "eslint-config-next": "14.0.4",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "postcss": "8.4.33",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "3.4.1",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
     "typescript": "5.3.3"
   },
   "config": {

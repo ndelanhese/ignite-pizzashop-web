@@ -2,7 +2,7 @@ import { Pizza } from 'lucide-react';
 import { ReactNode } from 'react';
 
 const AuthLayout = ({ children }: { children: ReactNode }) => (
-  <main className="grid min-h-screen grid-cols-1 sm:grid-cols-2">
+  <main className="grid min-h-screen grid-cols-1 antialiased sm:grid-cols-2">
     <div className="hidden h-full flex-col justify-between border-r border-foreground/5 bg-muted p-10 text-muted-foreground sm:flex">
       <div className="flex items-center gap-3 text-lg text-foreground">
         <Pizza className="h-5 w-5" />
