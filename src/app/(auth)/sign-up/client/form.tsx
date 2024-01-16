@@ -28,7 +28,7 @@ export const SignUpForm = () => {
 
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      toast.success('Enviamos um link de autenticação para seu e-mail', {
+      toast.success('Restaurante cadastrado com sucesso!', {
         action: {
           label: 'Login',
           onClick: () => push('/sign-in'),
