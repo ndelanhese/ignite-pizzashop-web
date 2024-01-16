@@ -24,7 +24,7 @@ jobs:
       run:  bunx playwright install --with-deps
     - name: Run Playwright tests
       env: 
-        CI: ${{ secrets.CI }}
+        CI: true
         NEXT_PUBLIC_APP_URL: ${{ secrets.NEXT_PUBLIC_APP_URL }}
         NEXT_PUBLIC_APP_PORT: ${{ secrets.NEXT_PUBLIC_APP_PORT }}
       run:  bunx playwright test
