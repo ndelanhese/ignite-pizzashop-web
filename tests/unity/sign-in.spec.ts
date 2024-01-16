@@ -5,14 +5,9 @@ test.describe('Sign-in form', () => {
     await page.goto('/sign-in');
   });
 
-  test('It should be not able to see the sign-in form', async ({ page }) => {
+  test('It should be able to see the sign-in form', async ({ page }) => {
     const headerText = page.getByText('Acessar painel').first();
     await expect(headerText).toBeVisible();
-
-    const subtitleText = page.getByText(
-      'Acompanhe suas vendas pelo painel do parceiro',
-    );
-    await expect(subtitleText).toBeVisible();
 
     const emailInput = page.getByPlaceholder('name@example.com');
     await expect(emailInput).toBeVisible();
@@ -55,11 +50,16 @@ test.describe('Sign-in form', () => {
 test.describe('Sign-in form (Mobile)', () => {
   test.use({ viewport: { width: 639, height: 740 } });
 
-  test('It should be not able to see only sign-in form', async ({ page }) => {
+  test('It should be able to see only the sign-in form withou sidebar', async ({
+    page,
+  }) => {
     await page.goto('/sign-in');
 
     const sidebarTitle = page.getByText('pizza.shop', { exact: true });
     await expect(sidebarTitle).toBeHidden();
+
+    const newRestaurantButton = page.getByText('Novo estabelecimento');
+    await expect(newRestaurantButton).toBeVisible();
 
     const headerText = page.getByText('Acessar painel').first();
     await expect(headerText).toBeVisible();
@@ -88,6 +88,9 @@ test.describe('Sign-in form (Desktop)', () => {
 
     const sidebarTitle = page.getByText('pizza.shop', { exact: true });
     await expect(sidebarTitle).toBeVisible();
+
+    const newRestaurantButton = page.getByText('Novo estabelecimento');
+    await expect(newRestaurantButton).toBeVisible();
 
     const headerText = page.getByText('Acessar painel').first();
     await expect(headerText).toBeVisible();
