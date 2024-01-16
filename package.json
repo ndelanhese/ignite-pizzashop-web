@@ -12,10 +12,13 @@
     "prepare": "husky install",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "test:e2e": "playwright test --ui",
-    "test:e2e:line": "playwright test"
+    "test:e2e:line": "playwright test",
+    "test:e2e:debug": "playwright test --debug",
+    "test:e2e:report": "playwright show-report"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@types/node": "20.11.2",
     "@types/react": "18.2.48",
