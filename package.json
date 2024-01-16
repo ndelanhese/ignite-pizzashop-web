@@ -12,10 +12,15 @@
     "prettier": "prettier ./app --write",
     "prepare": "husky install",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "test:e2e": "playwright test --ui",
-    "test:e2e:line": "playwright test",
-    "test:e2e:debug": "playwright test --debug",
-    "test:e2e:report": "playwright show-report"
+    "test:unity": "playwright test tests/unity/ --ui",
+    "test:unity:line": "playwright test tests/unity/",
+    "test:unity:debug": "playwright test tests/unity/ --debug",
+    "test:e2e": "playwright test tests/e2e/ --ui",
+    "test:e2e:line": "playwright test tests/e2e/",
+    "test:e2e:debug": "playwright test tests/e2e/ --debug",
+    "test:report": "playwright show-report",
+    "test:all": "playwright test tests/ --ui",
+    "test:all:line": "playwright test tests/"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",

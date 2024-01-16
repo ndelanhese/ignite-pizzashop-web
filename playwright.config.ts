@@ -10,8 +10,6 @@ const baseURL = new URL(`${BASE_URL}:${PORT}`);
 export default defineConfig({
   // Timeout per test
   timeout: 30 * 1000,
-  // Test directory
-  testDir: 'e2e',
 
   // Artifacts folder where screenshots, videos, and traces are stored.
   outputDir: 'test-results/',
@@ -51,6 +49,9 @@ export default defineConfig({
     // Collect trace when retrying the failed test.
     trace: 'on-first-retry',
 
+    // Capture screenshot after each test failure.
+    screenshot: 'only-on-failure',
+
     // All available context options: https://playwright.dev/docs/api/class-browser#browser-new-context
     // contextOptions: {
     //   ignoreHTTPSErrors: true,
@@ -59,33 +60,44 @@ export default defineConfig({
 
   projects: [
     {
-      name: 'Desktop Chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-      },
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
     },
+
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+
     // {
-    //   name: 'Desktop Firefox',
-    //   use: {
-    //     ...devices['Desktop Firefox'],
-    //   },
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
     // },
-    // {
-    //   name: 'Desktop Safari',
-    //   use: {
-    //     ...devices['Desktop Safari'],
-    //   },
-    // },
-    // Test against mobile viewports.
+
+    /* Test against mobile viewports. */
     {
       name: 'Mobile Chrome',
-      use: {
-        ...devices['Pixel 5'],
-      },
+      use: { ...devices['Pixel 5'] },
     },
     // {
-    //   name: "Mobile Safari",
-    //   use: devices["iPhone 12"],
+    //   name: 'Mobile Safari',
+    //   use: { ...devices['iPhone 12'] },
     // },
+
+    /* Test against branded browsers. */
+    // {
+    //   name: 'Microsoft Edge',
+    //   use: {
+    //     ...devices['Desktop Edge'],
+    //     channel: 'msedge',
+    //   },
+    // },
+    {
+      name: 'Google Chrome',
+      use: {
+        ...devices['Desktop Chrome'],
+        channel: 'chrome',
+      },
+    },
   ],
 });

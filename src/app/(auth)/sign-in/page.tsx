@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const SignInPage = () => (
   <div className="p-8">
-    <div className="flex w-[21.875rem] flex-col justify-center gap-6">
+    <div className="flex w-full max-w-[21.875rem] flex-col justify-center gap-6">
       <div className="flex flex-col gap-2 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">
           Acessar painel

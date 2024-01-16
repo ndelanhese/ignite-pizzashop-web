@@ -15,14 +15,13 @@ export const SignInForm = () => {
     register,
     handleSubmit,
     setFocus,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = useForm<SignInFormSchema>({
     resolver: zodResolver(signInFormSchema),
   });
 
   const handleSignIn: SubmitHandler<SignInFormSchema> = useCallback(
     async data => {
-      console.log(data);
       await new Promise(resolve => setTimeout(resolve, 2000));
 
       toast.success('Enviamos um link de autenticação para seu e-mail', {
@@ -49,6 +48,11 @@ export const SignInForm = () => {
           placeholder="name@example.com"
           {...register('email')}
         />
+        {errors.email && (
+          <span className="text-xs text-destructive">
+            {errors.email.message}
+          </span>
+        )}
       </div>
       <Button
         type="submit"
