@@ -1,5 +1,6 @@
 "use client";
 
+import { Pagination } from "@components/shared/pagination";
 import {
 	Table,
 	TableBody,
@@ -34,5 +35,6 @@ export const OrderTable = () => (
 				</TableBody>
 			</Table>
 		</div>
+		<Pagination pageIndex={0} perPage={105} totalCount={10} />
 	</div>
 );
