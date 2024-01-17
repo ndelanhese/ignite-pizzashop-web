@@ -48,8 +48,6 @@ To build the production-ready application, use:
 
 ```bash
 bun build
-or
-make build (to use with docker)
 ```
 
 ### Start
@@ -58,8 +56,6 @@ To start the production server after building, run:
 
 ```bash
 bun start
-or
-make start (to use with docker)
 ```
 
 ## Project Structure

@@ -1,14 +1,10 @@
 const path = require("path");
 
 const handleBuildEslintCommand = (filenames) =>
-  `next lint --fix --file ${filenames
-    .map((f) => path.relative(process.cwd(), f))
-    .join(" --file ")}`;
+	`biome check --apply ${filenames
+		.map((f) => path.relative(process.cwd(), f))
+		.join(" ")}`;
 
 module.exports = {
-  "*.{js,ts,tsx}": [
-    "prettier --write",
-    "eslint --fix",
-    handleBuildEslintCommand,
-  ],
+	"*.{js,ts,tsx}": ["biome check --apply", handleBuildEslintCommand],
 };
