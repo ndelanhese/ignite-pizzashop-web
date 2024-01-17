@@ -7,13 +7,15 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@components/ui/dropdownMenu";
-import { Building, ChevronDown, LogOut } from "lucide-react";
+import { Building, ChevronDown, LogOut, User } from "lucide-react";
 
 export const AccountMenu = () => (
 	<DropdownMenu>
 		<DropdownMenuTrigger asChild>
 			<Button variant="outline" className="flex items-center gap-2 select-none">
-				Pizza Shop
+				<span className="hidden sm:block">Pizza Shop</span>
+
+				<User className="w-5 h-5 sm:hidden" />
 				<ChevronDown className="w-4 h-4" />
 			</Button>
 		</DropdownMenuTrigger>
