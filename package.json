@@ -10,7 +10,7 @@
     "lint": "next lint",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "prettier": "prettier ./app --write",
-    "prepare": "husky install",
+    "husky:install": "husky install",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "test": "playwright test src/ --ui",
     "test:line": "playwright test src/",
