@@ -24,6 +24,8 @@
       "@env": ["./src/env/index.ts"],
       "@components/*": ["./src/components/*"],
       "@lib/*": ["./src/lib/*"],
+      "@services/*": ["./src/services/*"],
+      "@api/*": ["./src/api/*"]
     }
   },
   "include": [
