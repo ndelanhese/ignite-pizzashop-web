@@ -9,9 +9,12 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 import { signIn } from "@api/signIn";
+import { useSearchParams } from "next/navigation";
 import { SignInFormSchema, signInFormSchema } from "./form.schema";
 
 export const SignInForm = () => {
+	const { get } = useSearchParams();
+
 	const {
 		register,
 		handleSubmit,
@@ -19,6 +22,9 @@ export const SignInForm = () => {
 		formState: { isSubmitting, errors },
 	} = useForm<SignInFormSchema>({
 		resolver: zodResolver(signInFormSchema),
+		defaultValues: {
+			email: get("email") ?? "",
+		},
 	});
 
 	const retrySignIn: SubmitHandler<SignInFormSchema> = useCallback(
