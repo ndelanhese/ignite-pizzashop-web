@@ -39,5 +39,9 @@ export const api = async <T>(
 	}
 	const data: T = await response.json();
 
+	if (env.NEXT_PUBLIC_API_DELAY) {
+		await new Promise((resolve) => setTimeout(resolve, 2000));
+	}
+
 	return data;
 };

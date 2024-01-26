@@ -1,3 +1,4 @@
+import { getManagedRestaurant } from "@/api/managedRestaurant/managedRestaurant";
 import { getProfile } from "@api/profile";
 import { Button } from "@components/ui/button";
 import {
@@ -13,7 +14,7 @@ import { Building, ChevronDown, LogOut, User } from "lucide-react";
 
 export const AccountMenu = async () => {
 	const profileData = await getProfile();
-	console.log(profileData);
+	const managedRestaurantData = await getManagedRestaurant();
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -21,7 +22,7 @@ export const AccountMenu = async () => {
 					variant="outline"
 					className="flex items-center gap-2 select-none"
 				>
-					<span className="hidden sm:block">Pizza Shop</span>
+					<span className="hidden sm:block">{managedRestaurantData?.name}</span>
 
 					<User className="w-5 h-5 sm:hidden" />
 					<ChevronDown className="w-4 h-4" />
@@ -29,9 +30,9 @@ export const AccountMenu = async () => {
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end" className="w-56">
 				<DropdownMenuLabel className="flex flex-col">
-					<span>Nathan Delanhese</span>{" "}
+					<span>{profileData?.name}</span>{" "}
 					<span className="text-sm font-normal text-muted-foreground">
-						ndelanhese@gmail.com
+						{profileData?.email}
 					</span>
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
