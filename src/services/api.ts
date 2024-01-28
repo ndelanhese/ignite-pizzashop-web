@@ -23,6 +23,10 @@ export const api = async <T>(
 		? await import("next/headers")
 		: { cookies: () => "" };
 
+	const { next } = restInit ?? {};
+	const { tags } = next ?? {};
+	const cacheTag = tags ?? [path];
+
 	const response = await fetch(url, {
 		...restInit,
 		headers: {
@@ -32,12 +36,14 @@ export const api = async <T>(
 		},
 		...(body ? { body: JSON.stringify(body) } : undefined),
 		...(!isServer ? { credentials: "include" } : undefined),
+		...(next ? { next } : { next: { tags: cacheTag } }),
 	});
 
 	if (!response.ok) {
 		throw new Error(`HTTP error! Status: ${response.status}`);
 	}
-	const data: T = await response.json();
+
+	const data: T = response.body ? await response.json() : undefined;
 
 	if (env.NEXT_PUBLIC_API_DELAY) {
 		await new Promise((resolve) => setTimeout(resolve, 2000));

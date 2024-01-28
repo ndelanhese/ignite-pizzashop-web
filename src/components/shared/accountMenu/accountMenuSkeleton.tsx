@@ -1,12 +1,15 @@
-import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@components/ui/button";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@components/ui/dropdownMenu";
+import { Skeleton } from "@components/ui/skeleton";
 
-import { ChevronDown, User } from "lucide-react";
+import { Building, ChevronDown, LogOut, User } from "lucide-react";
 
 export const AccountMenuSkeleton = () => {
 	return (
@@ -25,7 +28,21 @@ export const AccountMenuSkeleton = () => {
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end" className="w-56">
-				<div />
+				<DropdownMenuLabel className="flex flex-col">
+					<div className="space-y-1.5">
+						<Skeleton className="h-4 w-32" />
+						<Skeleton className="h-3 w-24" />
+					</div>
+				</DropdownMenuLabel>
+				<DropdownMenuSeparator />
+				<DropdownMenuItem>
+					<Building className="w-4 h-4 mr-2" />
+					<span>Perfil da loja</span>
+				</DropdownMenuItem>
+				<DropdownMenuItem className="text-rose-500 dark:text-rose-400">
+					<LogOut className="w-4 h-4 mr-2" />
+					<span>Sair</span>
+				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);
