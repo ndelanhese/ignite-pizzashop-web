@@ -1,5 +1,5 @@
 export type GetOrdersProps = {
-	pageIndex?: number;
+	pageIndex?: number | null;
 };
 
 export type GetOrdersResponse = {

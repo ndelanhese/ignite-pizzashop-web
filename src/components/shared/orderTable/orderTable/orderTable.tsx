@@ -7,11 +7,17 @@ import {
 	TableHeader,
 	TableRow,
 } from "@components/ui/table";
-import { OrderTableFilters } from "./orderTableFilters";
-import { OrderTableRow } from "./orderTableRow";
+import { z } from "zod";
+import { OrderTableFilters } from "../orderTableFilters";
+import { OrderTableRow } from "../orderTableRow";
+import { OrderTableProps } from "./orderTable.types";
 
-export const OrderTable = async () => {
-	const ordersResult = await getOrders({});
+export const OrderTable = async ({ searchParams }: OrderTableProps) => {
+	const pageIndex = z.coerce
+		.number()
+		.transform((page) => page - 1)
+		.parse(searchParams.page ?? "1");
+	const ordersResult = await getOrders({ pageIndex });
 
 	return (
 		<div className="space-y-2.5 mt-4">
@@ -37,7 +43,13 @@ export const OrderTable = async () => {
 					</TableBody>
 				</Table>
 			</div>
-			<Pagination pageIndex={0} perPage={105} totalCount={10} />
+			{ordersResult && (
+				<Pagination
+					pageIndex={ordersResult.meta.pageIndex}
+					perPage={ordersResult.meta.perPage}
+					totalCount={ordersResult.meta.totalCount}
+				/>
+			)}
 		</div>
 	);
 };
