@@ -1,6 +1,9 @@
 "use client";
 
+import { approveOrder } from "@/api/order/approve";
 import { cancelOrder, revalidateOrderData } from "@/api/order/cancel";
+import { deliverOrder } from "@/api/order/deliver";
+import { dispatchOrder } from "@/api/order/dispatch";
 import { Button } from "@components/ui/button";
 import { Dialog, DialogTrigger } from "@components/ui/dialog";
 import { TableCell, TableRow } from "@components/ui/table";
@@ -15,15 +18,44 @@ import { OrderTableRowProps } from "./orderTableRow.types";
 
 export const OrderTableRow = ({ order }: OrderTableRowProps) => {
 	const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+	const [isCanceling, setCanceling] = useState(false);
 	const searchParams = useSearchParams();
 
-	const cancelOrderById = async (orderId: string) => {
-		await cancelOrder({ orderId });
+	const revalidateCache = async () => {
 		const params = new URLSearchParams(searchParams.toString()).toString();
 		await revalidateOrderData(
-			`/orders/${orderId}`,
+			`/orders/${order.orderId}`,
 			`/orders${searchParams.toString() ? `?${params}` : ""} `,
 		);
+	};
+
+	const cancelOrderById = async (orderId: string) => {
+		setCanceling(true);
+		await cancelOrder({ orderId });
+		await revalidateCache();
+		setCanceling(false);
+	};
+
+	const approveOrderById = async (orderId: string) => {
+		setIsLoading(true);
+		await approveOrder({ orderId });
+		await revalidateCache();
+		setIsLoading(false);
+	};
+
+	const deliverOrderById = async (orderId: string) => {
+		setIsLoading(true);
+		await deliverOrder({ orderId });
+		await revalidateCache();
+		setIsLoading(false);
+	};
+
+	const dispatchOrderById = async (orderId: string) => {
+		setIsLoading(true);
+		await dispatchOrder({ orderId });
+		await revalidateCache();
+		setIsLoading(false);
 	};
 
 	return (
@@ -58,15 +90,44 @@ export const OrderTableRow = ({ order }: OrderTableRowProps) => {
 				})}
 			</TableCell>
 			<TableCell>
-				<Button variant="outline" size="xs">
-					<ArrowRight className="mr-2 h-3 w-3" /> Aprovar
-				</Button>
+				{order.status === "pending" && (
+					<Button
+						variant="outline"
+						size="xs"
+						onClick={() => approveOrderById(order.orderId)}
+						disabled={isLoading || isCanceling}
+					>
+						<ArrowRight className="mr-2 h-3 w-3" /> Aprovar
+					</Button>
+				)}
+				{order.status === "processing" && (
+					<Button
+						variant="outline"
+						size="xs"
+						onClick={() => dispatchOrderById(order.orderId)}
+						disabled={isLoading || isCanceling}
+					>
+						<ArrowRight className="mr-2 h-3 w-3" /> Em entrega
+					</Button>
+				)}
 			</TableCell>
+			{order.status === "delivering" && (
+				<Button
+					variant="outline"
+					size="xs"
+					onClick={() => deliverOrderById(order.orderId)}
+					disabled={isLoading || isCanceling}
+				>
+					<ArrowRight className="mr-2 h-3 w-3" /> Entregue
+				</Button>
+			)}
 			<TableCell>
 				<Button
 					variant="ghost"
 					size="xs"
-					disabled={!["pending", "processing"].includes(order.status)}
+					disabled={
+						!["pending", "processing"].includes(order.status) || isCanceling
+					}
 					onClick={() => {
 						cancelOrderById(order.orderId);
 					}}

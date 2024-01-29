@@ -39,8 +39,6 @@ export const api = async <T>(
 		...(next ? { next } : { next: { tags: cacheTag } }),
 	});
 
-	console.log(path, response);
-
 	if (!response.ok) {
 		if (response.status === 401) {
 			redirect("/sign-in");
