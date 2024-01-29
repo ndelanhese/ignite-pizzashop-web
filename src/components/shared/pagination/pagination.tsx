@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	Pagination as ShadcnPagination,
 	PaginationContent,
@@ -11,6 +13,8 @@ import {
 	ChevronsLeft,
 	ChevronsRight,
 } from "lucide-react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useCallback } from "react";
 import { PaginationProps } from "./pagination.types";
 
 export const Pagination = ({
@@ -18,7 +22,27 @@ export const Pagination = ({
 	perPage,
 	totalCount,
 }: PaginationProps) => {
+	const { entries } = useSearchParams();
+	const pathname = usePathname();
+
 	const pages = Math.ceil(totalCount / perPage) || 1;
+	const previousPage = pageIndex <= 1 ? 1 : pageIndex;
+	const nextPage = pageIndex >= pages ? pages : pageIndex + 2;
+
+	const handleChangePage = useCallback(
+		(page: number) => {
+			const current = new URLSearchParams(Array.from(entries()));
+
+			current.set("page", page.toString());
+
+			const search = current.toString();
+			const query = search ? `?${search}` : "";
+
+			return `${pathname}${query}`;
+		},
+		[pathname, entries],
+	);
+
 	return (
 		<div className="flex items-center justify-between">
 			<span className="text-sm text-muted-foreground">
@@ -34,28 +58,28 @@ export const Pagination = ({
 					<PaginationContent>
 						<PaginationItem>
 							<PaginationPrevious
-								href={"#"}
+								href={handleChangePage(1)}
 								icon={ChevronsLeft}
 								label="Primeira página"
 							/>
 						</PaginationItem>
 						<PaginationItem>
 							<PaginationPrevious
-								href={"#"}
+								href={handleChangePage(previousPage)}
 								icon={ChevronLeft}
 								label="Página anterior"
 							/>
 						</PaginationItem>
 						<PaginationItem>
 							<PaginationNext
-								href={"#"}
+								href={handleChangePage(nextPage)}
 								icon={ChevronRight}
 								label="Próxima página"
 							/>
 						</PaginationItem>
 						<PaginationItem>
 							<PaginationNext
-								href={"#"}
+								href={handleChangePage(pages)}
 								icon={ChevronsRight}
 								label="Ultima página"
 							/>

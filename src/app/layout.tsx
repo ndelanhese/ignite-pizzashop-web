@@ -20,7 +20,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => (
 		<body>
 			<ThemeProvider
 				attribute="class"
-				defaultTheme="dark"
+				defaultTheme="system"
 				enableSystem
 				disableTransitionOnChange
 				storageKey="pizza.shop-theme"
