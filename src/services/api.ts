@@ -40,7 +40,8 @@ export const api = async <T>(
 	});
 
 	if (!response.ok) {
-		if (response.status === 401) {
+		console.log(response);
+		if (response.status === 401 && response.statusText === "Unauthorized") {
 			redirect("/sign-in");
 		}
 
