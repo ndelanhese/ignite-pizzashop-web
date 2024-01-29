@@ -11,8 +11,9 @@ import {
 } from "@components/ui/dropdownMenu";
 
 import { Dialog, DialogTrigger } from "@components/ui/dialog";
-import { Building, ChevronDown, LogOut, User } from "lucide-react";
+import { Building, ChevronDown, User } from "lucide-react";
 import { StoreProfileDialog } from "./components/storeProfileDialog";
+import { SignOutButton } from "./components/storeProfileDialog/components/signOutButton";
 
 export const AccountMenu = async () => {
 	const profileData = await getProfile();
@@ -49,8 +50,7 @@ export const AccountMenu = async () => {
 						</DropdownMenuItem>
 					</DialogTrigger>
 					<DropdownMenuItem className="text-rose-500 dark:text-rose-400">
-						<LogOut className="w-4 h-4 mr-2" />
-						<span>Sair</span>
+						<SignOutButton />
 					</DropdownMenuItem>
 				</DropdownMenuContent>
 			</DropdownMenu>

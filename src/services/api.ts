@@ -1,4 +1,8 @@
+"use server";
+
 import { env } from "@env";
+import { getCookies } from "./cookies";
+// import { redirect } from "next/navigation";
 
 export const api = async <T>(
 	path: string,
@@ -18,28 +22,28 @@ export const api = async <T>(
 		: `${BASE_URL}:${PORT}`;
 	const url = new URL(route, base);
 
-	const isServer = typeof window === "undefined";
-	const { cookies } = isServer
-		? await import("next/headers")
-		: { cookies: () => "" };
-
 	const { next } = restInit ?? {};
 	const { tags } = next ?? {};
 	const cacheTag = tags ?? [path];
+
+	const cookies = await getCookies();
 
 	const response = await fetch(url, {
 		...restInit,
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json",
-			...(isServer ? { Cookie: cookies().toString() } : undefined),
+			Cookie: cookies,
 		},
 		...(body ? { body: JSON.stringify(body) } : undefined),
-		...(!isServer ? { credentials: "include" } : undefined),
 		...(next ? { next } : { next: { tags: cacheTag } }),
 	});
 
 	if (!response.ok) {
+		// if (response.status === 401) {
+		// 	redirect
+		// }
+
 		throw new Error(`HTTP error! Status: ${response.status}`);
 	}
 

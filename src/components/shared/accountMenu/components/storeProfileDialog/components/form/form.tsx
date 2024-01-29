@@ -38,8 +38,7 @@ export const StoreProfileForm = ({
 				});
 				revalidateProfileData("/me");
 				toast.success("Perfil atualizado com sucesso!");
-			} catch (err) {
-				console.log(err);
+			} catch {
 				toast.error("Falha ao atualizar o perfil, tente novamente!");
 			}
 		},
