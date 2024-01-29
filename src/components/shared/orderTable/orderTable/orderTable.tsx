@@ -17,7 +17,24 @@ export const OrderTable = async ({ searchParams }: OrderTableProps) => {
 		.number()
 		.transform((page) => page - 1)
 		.parse(searchParams.page ?? "1");
-	const ordersResult = await getOrders({ pageIndex });
+	const orderId = z.coerce
+		.string()
+		.optional()
+		.parse(searchParams.order_id ?? "");
+	const customerName = z.coerce
+		.string()
+		.optional()
+		.parse(searchParams.customer_name ?? "");
+	const status = z.coerce
+		.string()
+		.optional()
+		.parse(searchParams.status ?? "all");
+	const ordersResult = await getOrders({
+		pageIndex,
+		orderId,
+		customerName,
+		status,
+	});
 
 	return (
 		<div className="space-y-2.5 mt-4">
