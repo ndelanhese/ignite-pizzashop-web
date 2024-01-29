@@ -1,8 +1,8 @@
 "use server";
 
 import { env } from "@env";
+import { redirect } from "next/navigation";
 import { getCookies } from "./cookies";
-// import { redirect } from "next/navigation";
 
 export const api = async <T>(
 	path: string,
@@ -40,9 +40,9 @@ export const api = async <T>(
 	});
 
 	if (!response.ok) {
-		// if (response.status === 401) {
-		// 	redirect
-		// }
+		if (response.status === 401) {
+			redirect("/sign-in");
+		}
 
 		throw new Error(`HTTP error! Status: ${response.status}`);
 	}
