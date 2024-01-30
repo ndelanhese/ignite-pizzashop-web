@@ -1,3 +1,4 @@
+import { PopularProductsSkeleton } from "@/components/shared/popularProductsSkeleton";
 import { DayOrdersAmountCard } from "@components/shared/dayOrdersAmountCard";
 import { MetricCardsSkeleton } from "@components/shared/metricCardsSkeleton";
 import { MonthCanceledOrdersAmountCard } from "@components/shared/monthCanceledOrdersAmountCard";
@@ -48,7 +49,10 @@ const DashboardPage = () => (
 
 		<div className="grid grid-cols-9 gap-4">
 			<RevenueChart />
-			<PopularProductsChart />
+
+			<Suspense fallback={<PopularProductsSkeleton />}>
+				<PopularProductsChart />
+			</Suspense>
 		</div>
 	</section>
 );

@@ -11,6 +11,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@components/ui/card";
+import { Skeleton } from "@components/ui/skeleton";
 import { subDays } from "date-fns";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { DateRange } from "react-day-picker";
@@ -59,7 +60,11 @@ export const RevenueChart = () => {
 				</div>
 			</CardHeader>
 			<CardContent>
-				<DailyRevenueInPeriodLineChart data={chartData} />
+				{chartData ? (
+					<DailyRevenueInPeriodLineChart data={chartData} />
+				) : (
+					<Skeleton className="w-full h-[15rem]" />
+				)}
 			</CardContent>
 		</Card>
 	);
