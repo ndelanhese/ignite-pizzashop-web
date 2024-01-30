@@ -23,6 +23,7 @@ const orderStatusColorMap: Record<StatusTypes, string> = {
 export const OrderStatus = ({ status }: OrderStatusProps) => (
 	<div className="flex items-center gap-2">
 		<span
+			data-testid="badge"
 			className={twMerge("h-2 w-2 rounded-full", orderStatusColorMap[status])}
 		/>
 		<span className="font-medium text-muted-foreground">
