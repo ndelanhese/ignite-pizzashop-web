@@ -51,7 +51,9 @@ export const api = async <T>(
 	const data: T = response.body ? await response.json() : undefined;
 
 	if (env.NEXT_PUBLIC_API_DELAY) {
-		await new Promise((resolve) => setTimeout(resolve, 2000));
+		await new Promise((resolve) =>
+			setTimeout(resolve, Math.round(Math.random() * 3000)),
+		);
 	}
 
 	return data;

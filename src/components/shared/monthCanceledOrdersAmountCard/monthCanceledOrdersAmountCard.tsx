@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@components/ui/card";
 import { DollarSign } from "lucide-react";
 
 export const MonthCanceledOrdersAmountCard = async () => {
-	const monthCaledOrdersAmount = await getMonthCanceledOrdersAmount();
+	const monthCanceledOrdersAmount = await getMonthCanceledOrdersAmount();
 
 	return (
 		<Card>
@@ -15,20 +15,20 @@ export const MonthCanceledOrdersAmountCard = async () => {
 			</CardHeader>
 			<CardContent className="space-y-1">
 				<span className="text-2xl font-bold tracking-tight">
-					{monthCaledOrdersAmount.amount.toLocaleString("pt-BR")}
+					{monthCanceledOrdersAmount.amount.toLocaleString("pt-BR")}
 				</span>
 				<p className="text-xs text-muted-foreground">
-					{monthCaledOrdersAmount.diffFromLastMonth < 0 ? (
+					{monthCanceledOrdersAmount.diffFromLastMonth < 0 ? (
 						<>
 							<span className="text-emerald-500 dark:text-emerald-400">
-								{monthCaledOrdersAmount.diffFromLastMonth}%
+								{monthCanceledOrdersAmount.diffFromLastMonth}%
 							</span>{" "}
 							em ao mês passado
 						</>
 					) : (
 						<>
 							<span className="text-rose-500 dark:text-rose-400">
-								+{monthCaledOrdersAmount.diffFromLastMonth}%
+								+{monthCanceledOrdersAmount.diffFromLastMonth}%
 							</span>{" "}
 							em ao mês passado
 						</>
