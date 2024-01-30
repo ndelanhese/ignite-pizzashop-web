@@ -48,13 +48,17 @@ export const api = async <T>(
 		throw new Error(`HTTP error! Status: ${response.status}`);
 	}
 
-	const data: T = response.body ? await response.json() : undefined;
+	try {
+		const data: T = await response.json();
 
-	if (env.NEXT_PUBLIC_API_DELAY) {
-		await new Promise((resolve) =>
-			setTimeout(resolve, Math.round(Math.random() * 3000)),
-		);
+		if (env.NEXT_PUBLIC_API_DELAY) {
+			await new Promise((resolve) =>
+				setTimeout(resolve, Math.round(Math.random() * 3000)),
+			);
+		}
+
+		return data;
+	} catch {
+		return;
 	}
-
-	return data;
 };

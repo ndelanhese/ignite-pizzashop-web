@@ -1,4 +1,4 @@
-import { Pagination } from "@components/shared/pagination";
+import { TablePagination } from "@components/shared/pagination";
 import { Button } from "@components/ui/button";
 import { Skeleton } from "@components/ui/skeleton";
 import {
@@ -65,7 +65,7 @@ export const OrderTableSkeleton = async () => {
 					</TableBody>
 				</Table>
 			</div>
-			{<Pagination pageIndex={0} perPage={10} totalCount={10} />}
+			{<TablePagination pageIndex={0} perPage={10} totalCount={10} />}
 		</div>
 	);
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import {
-	Pagination as ShadcnPagination,
+	Pagination,
 	PaginationContent,
 	PaginationItem,
 	PaginationNext,
@@ -17,12 +17,12 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { PaginationProps } from "./pagination.types";
 
-export const Pagination = ({
+export const TablePagination = ({
 	pageIndex,
 	perPage,
 	totalCount,
 }: PaginationProps) => {
-	const { entries } = useSearchParams();
+	const searchParams = useSearchParams();
 	const pathname = usePathname();
 
 	const pages = Math.ceil(totalCount / perPage) || 1;
@@ -31,7 +31,9 @@ export const Pagination = ({
 
 	const handleChangePage = useCallback(
 		(page: number) => {
-			const current = new URLSearchParams(Array.from(entries()));
+			const entries = searchParams?.entries();
+			if (!entries) return "";
+			const current = new URLSearchParams(Array.from(entries));
 
 			current.set("page", page.toString());
 
@@ -40,7 +42,7 @@ export const Pagination = ({
 
 			return `${pathname}${query}`;
 		},
-		[pathname, entries],
+		[pathname, searchParams?.entries],
 	);
 
 	return (
@@ -54,7 +56,7 @@ export const Pagination = ({
 					Página {pageIndex + 1} de {pages}
 				</span>
 
-				<ShadcnPagination>
+				<Pagination>
 					<PaginationContent>
 						<PaginationItem>
 							<PaginationPrevious
@@ -85,7 +87,7 @@ export const Pagination = ({
 							/>
 						</PaginationItem>
 					</PaginationContent>
-				</ShadcnPagination>
+				</Pagination>
 			</div>
 		</div>
 	);

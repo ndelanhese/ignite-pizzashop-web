@@ -1,5 +1,5 @@
 import { getOrders } from "@/api/orders/get";
-import { Pagination } from "@components/shared/pagination";
+import { TablePagination } from "@components/shared/pagination";
 import {
 	Table,
 	TableBody,
@@ -61,7 +61,7 @@ export const OrderTable = async ({ searchParams }: OrderTableProps) => {
 				</Table>
 			</div>
 			{ordersResult && (
-				<Pagination
+				<TablePagination
 					pageIndex={ordersResult.meta.pageIndex}
 					perPage={ordersResult.meta.perPage}
 					totalCount={ordersResult.meta.totalCount}
