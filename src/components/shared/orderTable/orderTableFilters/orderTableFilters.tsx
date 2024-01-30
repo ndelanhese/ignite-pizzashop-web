@@ -23,7 +23,7 @@ export const OrderTableFilters = () => {
 
 	const customerName = getSearchParam("customer_name");
 	const orderID = getSearchParam("order_id");
-	const status = getSearchParam("status");
+	const status = getSearchParam("status") ?? "all";
 
 	const { register, handleSubmit, reset, control } =
 		useForm<OrderFiltersSchema>({

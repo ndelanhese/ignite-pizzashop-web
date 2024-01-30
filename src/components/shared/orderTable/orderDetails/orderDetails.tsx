@@ -17,7 +17,9 @@ import {
 } from "@components/ui/table";
 import { formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { nanoid } from "nanoid";
 import { useCallback, useEffect, useState } from "react";
+import { OrderDetailsSkeleton } from "../orderDetailsSkeleton";
 import { OrderStatus } from "../orderStatus";
 import { OrderDetailsProps } from "./orderDetails.types";
 
@@ -41,7 +43,7 @@ export const OrderDetails = ({ orderId, isOpen }: OrderDetailsProps) => {
 				<DialogTitle>Pedido: {orderId}</DialogTitle>
 				<DialogDescription>Detalhes do pedido</DialogDescription>
 			</DialogHeader>
-			{orderDetails && (
+			{orderDetails ? (
 				<div className="space-y-6">
 					<Table>
 						<TableBody>
@@ -95,7 +97,7 @@ export const OrderDetails = ({ orderId, isOpen }: OrderDetailsProps) => {
 						</TableHeader>
 						<TableBody>
 							{orderDetails.orderItems.map((product) => (
-								<TableRow>
+								<TableRow key={nanoid()}>
 									<TableCell>{product.product.name}</TableCell>
 									<TableCell className="text-right">
 										{product.quantity}
@@ -131,6 +133,8 @@ export const OrderDetails = ({ orderId, isOpen }: OrderDetailsProps) => {
 						</TableFooter>
 					</Table>
 				</div>
+			) : (
+				<OrderDetailsSkeleton />
 			)}
 		</DialogContent>
 	);
