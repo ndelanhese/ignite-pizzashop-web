@@ -1,5 +1,4 @@
 import { render } from "@testing-library/react";
-// import userEvent from "@testing-library/user-event";
 import { expect, it } from "vitest";
 import { TablePagination } from "./pagination";
 

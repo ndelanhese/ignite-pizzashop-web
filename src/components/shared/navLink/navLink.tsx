@@ -10,7 +10,7 @@ export const NavLink = (props: NavLinkProps) => {
 	return (
 		<Link
 			{...props}
-			data-current={pathName === props.href || props?.isTesting}
+			data-current={pathName === props.href}
 			className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground data-[current=true]:text-foreground"
 		/>
 	);

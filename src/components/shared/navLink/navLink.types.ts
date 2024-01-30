@@ -3,5 +3,4 @@ import { ReactNode } from "react";
 
 export type NavLinkProps = LinkProps & {
 	children: ReactNode;
-	isTesting?: boolean;
 };
