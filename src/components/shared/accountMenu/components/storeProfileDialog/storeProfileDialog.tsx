@@ -17,8 +17,8 @@ export const StoreProfileDialog = async () => {
 			</DialogDescription>
 
 			<StoreProfileForm
-				description={managedRestaurantData?.description}
-				name={managedRestaurantData.name}
+				description={managedRestaurantData?.description ?? ""}
+				name={managedRestaurantData?.name ?? ""}
 			/>
 		</DialogContent>
 	);

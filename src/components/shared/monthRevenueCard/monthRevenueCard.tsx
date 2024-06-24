@@ -14,23 +14,24 @@ export const MonthRevenueCard = async () => {
 			</CardHeader>
 			<CardContent className="space-y-1">
 				<span className="text-2xl font-bold tracking-tight">
-					{(monthRevenue.receipt / 100).toLocaleString("pt-BR", {
+					{((monthRevenue?.receipt ?? 0) / 100).toLocaleString("pt-BR", {
 						style: "currency",
 						currency: "BRL",
 					})}
 				</span>
 				<p className="text-xs text-muted-foreground">
-					{monthRevenue.diffFromLastMonth >= 0 ? (
+					{monthRevenue?.diffFromLastMonth &&
+					monthRevenue?.diffFromLastMonth >= 0 ? (
 						<>
 							<span className="text-emerald-500 dark:text-emerald-400">
-								+{monthRevenue.diffFromLastMonth}%
+								+{monthRevenue?.diffFromLastMonth}%
 							</span>{" "}
 							em ao mês passado
 						</>
 					) : (
 						<>
 							<span className="text-rose-500 dark:text-rose-400">
-								{monthRevenue.diffFromLastMonth}%
+								{monthRevenue?.diffFromLastMonth}%
 							</span>{" "}
 							em ao mês passado
 						</>

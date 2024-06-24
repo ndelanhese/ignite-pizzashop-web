@@ -2,6 +2,7 @@ import { Button } from "@components/ui/button";
 import { Metadata } from "next";
 import Link from "next/link";
 
+import { Suspense } from "react";
 import { SignInForm } from "./client/form";
 
 export const metadata: Metadata = {
@@ -23,7 +24,9 @@ const SignInPage = async () => {
 						Acompanhe suas vendas pelo painel do parceiro
 					</p>
 				</div>
-				<SignInForm />
+				<Suspense>
+					<SignInForm />
+				</Suspense>
 			</div>
 		</div>
 	);

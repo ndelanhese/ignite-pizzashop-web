@@ -17,7 +17,7 @@ export const PopularProductsChart = async () => {
 				</div>
 			</CardHeader>
 			<CardContent>
-				<PopularProductsPieChart data={popularProducts} />
+				<PopularProductsPieChart data={popularProducts ?? []} />
 			</CardContent>
 		</Card>
 	);
